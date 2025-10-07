@@ -4,5 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(Hashage.Sha265("abc"));
+        System.out.println(TraitementMot.decalage("111111",3));
     }
 }
