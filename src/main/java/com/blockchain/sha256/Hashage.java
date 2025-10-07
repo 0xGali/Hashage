@@ -19,6 +19,7 @@ public class Hashage {
                 }
                 return reponse;
             }
+            //Gestion erreur
             catch(Exception e){
                 e.printStackTrace();
                 return "erreur";
