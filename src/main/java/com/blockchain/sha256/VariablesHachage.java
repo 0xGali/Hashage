@@ -24,11 +24,21 @@ public class VariablesHachage {
             S = H[i].toCharArray();
         }
         for(int t=0;t<64;t++){
-            Operations.add_Binary(Operations.add_Binary
+            String T1 = Operations.add_Binary(Operations.add_Binary
                     (Operations.add_Binary(
                             Operations.add_Binary(String.valueOf(S[7]),sigma1(String.valueOf(S[4]))),
                             Ch(String.valueOf(S[4]),String.valueOf(S[5]),String.valueOf(S[6]))),K[t]
                             ),mots[t]);
+            String T2 = Operations.add_Binary(sigma1(String.valueOf(S[0])),
+                    Maj(String.valueOf(S[0]),String.valueOf(S[1]),String.valueOf(S[2])));
+            S[7] = S[6];
+            S[6] = S[5];
+            S[5] = S[4];
+            S[4] = S[3];
+            S[3] = S[2];
+            S[2] = S[1];
+            S[1] = S[0];
+            S[0] = Operations.add_Binary(T1,T2).toCharArray()[0];
         }
     }
 
