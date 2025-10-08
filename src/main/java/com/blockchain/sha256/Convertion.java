@@ -47,4 +47,15 @@ public class Convertion {
         hex = hex.replaceAll("f", "1111");
         return hex;
     }
+
+    public static String doubleToBinary32(double partieDecimale) {
+        StringBuilder binaire = new StringBuilder();
+        for (int i = 0; i < 32; i++) {
+            partieDecimale *= 2;
+            int bit = (int) partieDecimale;
+            binaire.append(bit);
+            partieDecimale -= bit;
+        }
+        return binaire.toString();
+    }
 }
