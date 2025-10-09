@@ -3,6 +3,8 @@ package com.blockchain.sha256;
 public class Operations {
 
     public static String xorBinaryStrings(String a, String b) {
+        System.out.println("a: "+a);
+        System.out.println("b: "+b);
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < a.length(); i++) {
             result.append((a.charAt(i) == b.charAt(i)) ? '0' : '1');
@@ -29,12 +31,13 @@ public class Operations {
     }
 
     public static String decalage(String mot,int nbDecal){
+        System.out.println("mot: "+mot);
         String motN0="";
         String motN="";
         for(int i=0;i<nbDecal;i++){
-            motN0 = motN0+"0";
-            motN = motN+mot.charAt(i);
+            motN0 +="0";
         }
-        return motN0+motN;
+        System.out.println("motN: "+ motN0+mot.substring(0,mot.length()-motN0.length()));
+        return motN0+mot.substring(0,mot.length()-motN0.length());
     }
 }
