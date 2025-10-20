@@ -13,10 +13,14 @@ public class Hashage {
             try {
                 String messageRempli = Remplissage.remplir(entreeBinaire);
                 String messageDecoupe[] = Decoupage.decoupe(messageRempli);
-                String reponse = "";
-                for(int i=0; i<messageDecoupe.length; i++){
-                    reponse += messageDecoupe[i]+" ";
+                String mots[] = TraitementMot.creerMots(messageDecoupe);
+                System.out.println("Mots generes :");
+                for(int i=0;i<mots.length;i++){
+                    System.out.println("mot "+i+" : "+mots[i]);
                 }
+                String reponse = "";
+                VariablesHachage vh = new VariablesHachage();
+                vh.iterations(mots);
                 return reponse;
             }
             //Gestion erreur
