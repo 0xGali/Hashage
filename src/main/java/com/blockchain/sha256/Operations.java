@@ -3,8 +3,9 @@ package com.blockchain.sha256;
 public class Operations {
 
     public static String xorBinaryStrings(String a, String b) {
-        System.out.println("a: "+a);
-        System.out.println("b: "+b);
+        if (a.length() != b.length()) {
+            throw new IllegalArgumentException("Les chaînes binaires doivent avoir la même longueur.");
+        }
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < a.length(); i++) {
             result.append((a.charAt(i) == b.charAt(i)) ? '0' : '1');
@@ -13,12 +14,16 @@ public class Operations {
     }
 
     // Addition de 2 nombres binaires
-    static String add_Binary(String x, String y)
-    {
-        int num1 = Integer.parseInt(x, 2);
-        int num2 = Integer.parseInt(y, 2);
-        int sum = num1 + num2;
-        String result = Integer.toBinaryString(sum);
+    static String add_Binary(String x, String y){
+        long a = Long.parseLong(x, 2);
+        long b = Long.parseLong(y, 2);
+        long somme = (a + b) & 0xFFFFFFFFL;
+
+        String result = Long.toBinaryString(somme);
+        while (result.length() < 32) {
+            result = "0" + result;
+        }
+
         return result;
     }
 
@@ -27,17 +32,15 @@ public class Operations {
         for(int i=2;i<=nbRota;i++){
             motN = mot.charAt(mot.length()-i)+motN;
         }
-        return motN+mot.substring(0,nbRota+2);
+        return motN+mot.substring(0,mot.length()-nbRota);
     }
 
     public static String decalage(String mot,int nbDecal){
-        System.out.println("mot: "+mot);
         String motN0="";
         String motN="";
         for(int i=0;i<nbDecal;i++){
             motN0 +="0";
         }
-        System.out.println("motN: "+ motN0+mot.substring(0,mot.length()-motN0.length()));
         return motN0+mot.substring(0,mot.length()-motN0.length());
     }
 }
