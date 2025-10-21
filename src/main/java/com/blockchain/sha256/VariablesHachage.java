@@ -19,9 +19,9 @@ public class VariablesHachage {
     }
 
     public void iterations(String[] mots){
-        char S[] = new char[7];
+        String S[] = new String[8];
         for(int i=0;i<8;i++){
-            S = H[i].toCharArray();
+            S[i] = H[i];
         }
         for(int t=0;t<64;t++){
             String T1 = Operations.add_Binary(Operations.add_Binary
@@ -38,7 +38,7 @@ public class VariablesHachage {
             S[3] = S[2];
             S[2] = S[1];
             S[1] = S[0];
-            S[0] = Operations.add_Binary(T1,T2).toCharArray()[0];
+            S[0] = Operations.add_Binary(T1,T2);
         }
     }
 
