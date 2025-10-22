@@ -2,7 +2,7 @@ package com.blockchain.sha256;
 
 public class Convertion {
 
-    //fonction qui convertit un string en une chaine de chiffres binaire
+    //fonction qui convertit un string en une chaine binaire
     public static String stringToBinary(String input) {
         StringBuilder binaryOutput = new StringBuilder();
         for (char c : input.toCharArray()) {
@@ -14,6 +14,7 @@ public class Convertion {
         return binaryOutput.toString();
     }
 
+    //fonction qui convertit une chaine de caractères hexadécimale en chaine binaire
     public static String hexToBin(String hex){
         hex = hex.replaceAll("0", "0000");
         hex = hex.replaceAll("1", "0001");
@@ -34,6 +35,20 @@ public class Convertion {
         return hex;
     }
 
+    //fonction qui convertit une chaine de caractères binaire en chaine hexadecimale
+    public static String binToHex(String binary) {
+        StringBuilder hex = new StringBuilder();
+        for (int i = 0; i < binary.length(); i += 8) {
+            String byteStr = binary.substring(i, i + 8);
+            int byteValue = Integer.parseInt(byteStr, 2);
+            // Formate en 2 chiffres hexadécimaux
+            String hexByte = String.format("%02x", byteValue);
+            hex.append(hexByte);
+        }
+        return hex.toString();
+    }
+
+    //fonction qui convertit une valeur décimale en une chaine binaire de taille 32 caractères
     public static String doubleToBinary32(double partieDecimale) {
         StringBuilder binaire = new StringBuilder();
         for (int i = 0; i < 32; i++) {
@@ -45,15 +60,4 @@ public class Convertion {
         return binaire.toString();
     }
 
-    public static String binaryToHex(String binary) {
-        StringBuilder hex = new StringBuilder();
-        for (int i = 0; i < binary.length(); i += 8) {
-            String byteStr = binary.substring(i, i + 8);
-            int byteValue = Integer.parseInt(byteStr, 2);
-            // Formate en 2 chiffres hexadécimaux
-            String hexByte = String.format("%02x", byteValue);
-            hex.append(hexByte);
-        }
-        return hex.toString();
-    }
 }

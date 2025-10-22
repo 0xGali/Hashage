@@ -25,7 +25,7 @@ public class Hashage {
                 }
                 VariablesHachage vh = new VariablesHachage();
                 String reponse = vh.iterations(mots);
-                return Convertion.binaryToHex(reponse);
+                return Convertion.binToHex(reponse);
             }
             //Gestion erreur
             catch(Exception e){
