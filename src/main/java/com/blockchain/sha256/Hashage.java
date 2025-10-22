@@ -4,8 +4,9 @@ package com.blockchain.sha256;
 public class Hashage {
 
     private Boolean conversion = false;
+    private String[] blocsPrecedents = new String[0];
     //fonction qui effectue le hachage complet
-    public String Sha265(String entree,String[] blocsPrecedents){
+    public String Sha265(String entree){
         //conversion en chaîne binaire dans le cas où la conversion en binaire n'a pas été effectué
         if(conversion==false) {
             entree = Convertion.stringToBinary(entree);
@@ -19,7 +20,8 @@ public class Hashage {
         //sur le reste de l'entree
         if(entree.length() > 447){
             blocs[blocs.length-1] = entree.substring(0,447);
-            return Sha265(entree.substring(447), blocs);
+            blocsPrecedents = blocs;
+            return Sha265(entree.substring(447));
         }
         else{
             blocs[blocs.length-1] = entree;
