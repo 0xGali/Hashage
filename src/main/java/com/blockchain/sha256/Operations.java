@@ -20,12 +20,12 @@ public class Operations {
         long b = Long.parseLong(y, 2);
         long somme = (a + b) & 0xFFFFFFFFL;
 
-        String result = Long.toBinaryString(somme);
+        StringBuilder result = new StringBuilder(Long.toBinaryString(somme));
         while (result.length() < 32) {
-            result = "0" + result;
+            result.insert(0, "0");
         }
 
-        return result;
+        return result.toString();
     }
 
     //rotation : pour un nombre de rotation donné, le dernier caractere de la chaine est ramené devant et les autres avance de 1

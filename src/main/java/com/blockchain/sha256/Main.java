@@ -12,7 +12,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String entree = sc.nextLine();
         System.out.println("empreinte générée :");
-        System.out.println(Hashage.Sha265(entree,new String[0]));
+        System.out.println(new Hashage().Sha265(entree,new String[0]));
         //verification
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

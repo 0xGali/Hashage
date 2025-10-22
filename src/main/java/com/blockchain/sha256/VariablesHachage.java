@@ -45,8 +45,10 @@ public class VariablesHachage {
             for (int j = 0; j < 8; j++) {
                 H[j] = Operations.addBinary(H[j], S[j]);
                 H[j] = Operations.modulo32Binary(H[j]);
-                reponse += H[j];
             }
+        }
+        for (int i = 0; i < 8; i++) {
+            reponse += H[i];
         }
         return reponse;
     }
