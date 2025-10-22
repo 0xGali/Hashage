@@ -14,7 +14,7 @@ public class Operations {
     }
 
     // Addition de 2 nombres binaires
-    static String add_Binary(String x, String y){
+    static String addBinary(String x, String y){
         long a = Long.parseLong(x, 2);
         long b = Long.parseLong(y, 2);
         long somme = (a + b) & 0xFFFFFFFFL;
@@ -42,5 +42,39 @@ public class Operations {
             motN0 +="0";
         }
         return motN0+mot.substring(0,mot.length()-motN0.length());
+    }
+
+    public static String BinaryAnd(String x,String y){
+        String reponse = "";
+        for(int i =0;i<x.length();i++){
+            if(x.charAt(i) == y.charAt(i)){
+                reponse += x.charAt(i);
+            }
+            else {
+                reponse += "0";
+            }
+        }
+        return reponse;
+    }
+
+    public static String BinaryNot(String x){
+        String reponse = "";
+        for(int i =0;i<x.length();i++){
+            if(x.charAt(i) == '0'){
+                reponse+='1';
+            }
+            else {
+                reponse += "0";
+            }
+        }
+        return reponse;
+    }
+
+    public static String modulo32Binary(String binary) {
+        long value = Long.parseUnsignedLong(binary, 2);
+        long mod = value & 0xFFFFFFFFL;
+        String modBinary = Long.toBinaryString(mod);
+        modBinary = String.format("%32s", modBinary).replace(' ', '0');
+        return modBinary;
     }
 }

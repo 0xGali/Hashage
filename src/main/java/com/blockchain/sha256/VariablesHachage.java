@@ -18,28 +18,37 @@ public class VariablesHachage {
         K = recuperationDesK();
     }
 
-    public void iterations(String[] mots){
-        String S[] = new String[8];
-        for(int i=0;i<8;i++){
-            S[i] = H[i];
+    public String iterations(String[][] mots){
+        String reponse = "";
+        for(int i=0;i<mots.length;i++) {
+            String S[] = new String[8];
+            for (int j = 0; j < 8; j++) {
+                S[j] = H[j];
+            }
+            for (int t = 0; t < 64; t++) {
+                String T1 = Operations.addBinary(Operations.addBinary
+                        (Operations.addBinary(
+                                Operations.addBinary(String.valueOf(S[7]), sigma1(String.valueOf(S[4]))),
+                                Ch(String.valueOf(S[4]), String.valueOf(S[5]), String.valueOf(S[6]))), K[t]
+                        ), mots[i][t]);
+                String T2 = Operations.addBinary(sigma1(String.valueOf(S[0])),
+                        Maj(String.valueOf(S[0]), String.valueOf(S[1]), String.valueOf(S[2])));
+                S[7] = S[6];
+                S[6] = S[5];
+                S[5] = S[4];
+                S[4] = S[3];
+                S[3] = S[2];
+                S[2] = S[1];
+                S[1] = S[0];
+                S[0] = Operations.addBinary(T1, T2);
+            }
+            for (int j = 0; j < 8; j++) {
+                H[j] = Operations.addBinary(H[j], S[j]);
+                H[j] = Operations.modulo32Binary(H[j]);
+                reponse += H[j];
+            }
         }
-        for(int t=0;t<64;t++){
-            String T1 = Operations.add_Binary(Operations.add_Binary
-                    (Operations.add_Binary(
-                            Operations.add_Binary(String.valueOf(S[7]),sigma1(String.valueOf(S[4]))),
-                            Ch(String.valueOf(S[4]),String.valueOf(S[5]),String.valueOf(S[6]))),K[t]
-                            ),mots[t]);
-            String T2 = Operations.add_Binary(sigma1(String.valueOf(S[0])),
-                    Maj(String.valueOf(S[0]),String.valueOf(S[1]),String.valueOf(S[2])));
-            S[7] = S[6];
-            S[6] = S[5];
-            S[5] = S[4];
-            S[4] = S[3];
-            S[3] = S[2];
-            S[2] = S[1];
-            S[1] = S[0];
-            S[0] = Operations.add_Binary(T1,T2);
-        }
+        return reponse;
     }
 
     public String sigma0(String mot){
@@ -55,25 +64,17 @@ public class VariablesHachage {
     }
 
     public String Ch(String x,String y, String z){
-        Boolean boolx = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean booly = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean boolz = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean operation1 = (boolx && booly);
-        Boolean operation2 = (!boolx && boolz);
-        return Operations.xorBinaryStrings(Convertion.BooleanToString(operation1),
-                Convertion.BooleanToString(operation2));
+        String operation1 = (Operations.BinaryAnd(x,y));
+        String operation2 = (Operations.BinaryAnd(Operations.BinaryNot(x),z));
+        return Operations.xorBinaryStrings(operation1,
+                operation2);
     }
 
     public String Maj(String x,String y, String z){
-        Boolean boolx = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean booly = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean boolz = Convertion.intToBoolean(Integer.parseInt(x));
-        Boolean operation1 = (boolx && booly);
-        Boolean operation2 = (boolx && boolz);
-        Boolean operation3 = (booly && boolz);
-        return Operations.xorBinaryStrings(Operations.xorBinaryStrings(Convertion.BooleanToString(operation1),
-                        Convertion.BooleanToString(operation2))
-                ,Convertion.BooleanToString(operation3));
+        String operation1 = (Operations.BinaryAnd(x,y));
+        String operation2 = (Operations.BinaryAnd(x,z));
+        String operation3 = (Operations.BinaryAnd(y,z));
+        return Operations.xorBinaryStrings(Operations.xorBinaryStrings(operation1, operation2),operation3);
     }
 
     public String[] recuperationDesK(){

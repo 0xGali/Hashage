@@ -14,20 +14,6 @@ public class Convertion {
         return binaryOutput.toString();
     }
 
-    public static boolean intToBoolean(int num) {
-        if (num != 0 && num != 1) {
-            throw new IllegalArgumentException("Input must be 0 or 1");
-        }
-        return num == 0? false : true;
-    }
-
-    public static String BooleanToString(Boolean bool) {
-        if (bool) {
-            return "1";
-        }
-        return "0";
-    }
-
     public static String hexToBin(String hex){
         hex = hex.replaceAll("0", "0000");
         hex = hex.replaceAll("1", "0001");
@@ -57,5 +43,17 @@ public class Convertion {
             partieDecimale -= bit;
         }
         return binaire.toString();
+    }
+
+    public static String binaryToHex(String binary) {
+        StringBuilder hex = new StringBuilder();
+        for (int i = 0; i < binary.length(); i += 8) {
+            String byteStr = binary.substring(i, i + 8);
+            int byteValue = Integer.parseInt(byteStr, 2);
+            // Formate en 2 chiffres hexadécimaux
+            String hexByte = String.format("%02x", byteValue);
+            hex.append(hexByte);
+        }
+        return hex.toString();
     }
 }
