@@ -16,7 +16,9 @@ public class TraitementMot {
 
     public static String[] creerMots(String[] mots){
         for(int index=16;index<64;index++){
-            mots[index]=Operations.addBinary(Operations.addBinary(Operations.addBinary(sigma1(mots[index-2]),mots[index-7]),sigma0(mots[index-15])),mots[index-16]);
+            mots[index]=Operations.addBinary(
+                        Operations.addBinary(
+                                Operations.addBinary(sigma1(mots[index-2]),mots[index-7]),sigma0(mots[index-15])),mots[index-16]);
         }
         return mots;
     }

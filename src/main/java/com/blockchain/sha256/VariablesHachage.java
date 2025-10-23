@@ -31,7 +31,7 @@ public class VariablesHachage {
                                 Operations.addBinary(String.valueOf(S[7]), sigma1(String.valueOf(S[4]))),
                                 Ch(String.valueOf(S[4]), String.valueOf(S[5]), String.valueOf(S[6]))), K[t]
                         ), mots[i][t]);
-                String T2 = Operations.addBinary(sigma1(String.valueOf(S[0])),
+                String T2 = Operations.addBinary(sigma0(String.valueOf(S[0])),
                         Maj(String.valueOf(S[0]), String.valueOf(S[1]), String.valueOf(S[2])));
                 S[7] = S[6];
                 S[6] = S[5];

@@ -28,7 +28,7 @@ public class Hashage {
             try {
                 String mots[][] = new String[blocs.length][64];
                 for (int i = 0; i < blocs.length; i++) {
-                    String messageRempli = Remplissage.remplir(entree);
+                    String messageRempli = Remplissage.remplir(blocs[i]);
                     String messageDecoupe[] = Decoupage.decoupe(messageRempli);
                     mots[i] = TraitementMot.creerMots(messageDecoupe);
                 }
